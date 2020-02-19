@@ -3,41 +3,53 @@
   <head>
     <meta charset="utf-8">
     <title>Which Beyonce</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header>
       <h1>Which Beyonce</h1>
     </header>
+    <div class="entire-page">
     <aside>
       <h2>Matches this round</h2>
       <div>
-        <p>0</p>
-        <div class="confirmed-match"></div>
-        <div class="confirmed-match"></div>
-        <div class="confirmed-match"></div>
-        <div class="confirmed-match"></div>
-        <div class="confirmed-match"></div>
+        <p class="number-of-matches">0</p>
+        <div class="confirmed-match-top">
+          <div class="confirmed-match"></div>
+          <div class="confirmed-match"></div>
+          <div class="confirmed-match"></div>
+        </div>
+        <div class="confirmed-match-bottom">
+          <div class="confirmed-match"></div>
+          <div class="confirmed-match"></div>
+        </div>
       </div>
-      <section>
-        <p>Top 3 times</p>
-        <p>129.94 seconds</p>
-        <p>201.84 seconds</p>
-        <p>182.75 seconds</p>
+      <section class="top-3-times">
+        <p class="top-time">Top 3 times</p>
+        <p class="top-time">129.94 seconds</p>
+        <p class="top-time">201.84 seconds</p>
+        <p class="top-time">182.75 seconds</p>
       </section>
     </aside>
     <main class="game-page">
-      <div class="unknown-card card-1">B</div>
-      <div class="unknown-card card-2">B</div>
-      <div class="unknown-card card-3">B</div>
-      <div class="unknown-card card-4">B</div>
-      <div class="unknown-card card-5">B</div>
-      <div class="unknown-card card-6">B</div>
-      <div class="unknown-card card-7">B</div>
-      <div class="unknown-card card-8">B</div>
-      <div class="unknown-card card-9">B</div>
-      <div class="unknown-card card-10">B</div>
+      <section class="unknown-card-top">
+        <div class="unknown-card card-1">B</div>
+        <div class="unknown-card card-2 rotate-left">B</div>
+        <div class="unknown-card card-3 rotate-left">B</div>
+        <div class="unknown-card card-4 rotate-right">B</div>
+      </section>
+      <section class="unknown-card-middle">
+        <div class="unknown-card card-5">B</div>
+        <div class="unknown-card card-6 rotate-left">B</div>
+        <div class="unknown-card card-7 rotate-right">B</div>
+      </section>
+      <section class="unknown-card-bottom">
+        <div class="unknown-card card-8 rotate-right">B</div>
+        <div class="unknown-card card-9">B</div>
+        <div class="unknown-card card-10 rotate-left">B</div>
+      </section>
     </main>
-    <main class="winner-page">
+    <main class="winner-page hidden">
       <h3>Congratulations!</h3>
       <p>All matches were found in BLANK</p>
       <div>
@@ -45,5 +57,6 @@
         <button class="new-game-button">New Game</button>
       </div>
     </main>
+  </div>
   </body>
 </html>
