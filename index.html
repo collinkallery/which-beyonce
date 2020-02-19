@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Which Beyonce</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <header>
-      <h1>Which Beyonce</h1>
-    </header>
-    <div class="entire-page">
-    <aside>
+
+<head>
+  <meta charset="utf-8">
+  <title>Which Beyonce</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Which Beyonce</h1>
+  </header>
+  <div class="entire-page">
+    <aside class="hidden">
       <h2>Matches this round</h2>
       <div>
         <p class="number-of-matches">0</p>
@@ -31,7 +33,7 @@
         <p class="top-time">182.75 seconds</p>
       </section>
     </aside>
-    <main class="game-page">
+    <main class="game-page hidden">
       <section class="unknown-card-top">
         <div class="unknown-card card-1">B</div>
         <div class="unknown-card card-2 rotate-left">B</div>
@@ -49,14 +51,21 @@
         <div class="unknown-card card-10 rotate-left">B</div>
       </section>
     </main>
-    <main class="winner-page hidden">
-      <h3>Congratulations!</h3>
-      <p>All matches were found in BLANK</p>
-      <div>
-        <button class="play-again-button">Play Again</button>
-        <button class="new-game-button">New Game</button>
-      </div>
+    <main class="winner-page">
+        <section class="congrats-container">
+          <h3>Congratulations!</h3>
+          <p class="match-time-info">All matches were found in BLANK</p>
+          <div class="new-game-button-container">
+            <button class="play-again-button">Play Again</button>
+            <button class="new-game-button">New Game</button>
+          </div>
+        </section>
     </main>
   </div>
-  </body>
+</body>
+
+<script src="card.js"></script>
+<script src="deck.js"></script>
+<script src="main.js"></script>
+
 </html>
