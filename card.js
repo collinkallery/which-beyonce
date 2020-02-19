@@ -4,8 +4,6 @@ class Card {
     this.matched = false;
   }
   match() {
-    
-  }
-}
 
-module.exports = Card;
+  }
+};
