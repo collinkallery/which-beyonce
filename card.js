@@ -1,7 +1,8 @@
 class Card {
-  constructor(matchInfo) {
-    this.matchInfo = matchInfo;
+  constructor(uniqueId, sourceImage) {
+    this.matchInfo = uniqueId;
     this.matched = false;
+    this.sourceImage = sourceImage;
   }
   match() {
 
