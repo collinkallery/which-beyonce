@@ -1,0 +1,150 @@
+* {
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  /* border: 1px solid red; */
+}
+
+header {
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.entire-page {
+  display: flex;
+  flex-direction: row;
+}
+
+aside {
+  width: 22%;
+  height: 90vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+aside h2,
+p {
+  color: white;
+}
+
+h2 {
+  width: 7em;
+  font-size: 1.25em;
+  text-align: center;
+  margin-top: 3em;
+}
+
+.confirmed-match {
+  background-color: grey;
+  width: 4em;
+  height: 5.5em;
+  margin: 1em;
+
+}
+
+.confirmed-match-top,
+.confirmed-match-bottom {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.number-of-matches {
+  font-size: 5em;
+  margin: .10em;
+  text-align: center;
+}
+
+.top-3-times {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5em;
+}
+
+.top-time {
+  margin: .5em
+}
+
+main {
+  background-color: #E9E9E9;
+  width: 88%;
+  height: 90vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.unknown-card {
+  font-size: 4em;
+  background-color: white;
+  width: 2em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: .3em;
+  font-weight: bold;
+  border: .08em solid black;
+}
+
+.unknown-card-top,
+.unknown-card-middle,
+.unknown-card-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-1 {
+  transform: translate(1em, 1em);
+}
+
+.card-2 {
+  transform: translate(1.7em, .3em) rotate(-15deg);
+}
+
+.card-3 {
+  transform: translate(2.8em, .4em);
+}
+
+.card-4 {
+  transform: translate(4em, .3em) rotate(20deg);
+}
+
+.card-5 {
+  transform: translate(3.6em, .4em) rotate(22deg);
+}
+
+.card-6 {
+  transform: translate(5.7em, 1.4em) rotate(-12deg);
+}
+
+.card-7 {
+  transform: translate(5.75em, .5em) rotate(-4deg);
+}
+
+.card-8 {
+  transform: translate(.5em, -1em) rotate(-16deg);
+}
+
+.card-9 {
+  transform: translate(3em, -.4em) rotate(6deg);
+}
+
+.card-10 {
+  transform: translate(8.5em, -1em) rotate(23deg);
+}
