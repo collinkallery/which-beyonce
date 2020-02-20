@@ -100,7 +100,7 @@ main {
 }
 .unknown-card {
   font-size: 4em;
-  background-color: white;
+  background-image: white;
   width: 2em;
   height: 3em;
   display: inline-flex;
