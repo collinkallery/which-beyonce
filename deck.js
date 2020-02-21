@@ -10,23 +10,34 @@ class Deck {
   addSelected(card) {
     if (this.selectedCards.length < 2) {
     this.selectedCards.push(card);
+  }
+    if (this.selectedCards.length === 2) {
+      this.checkSelectedCards(this.selectedCards);
+    }
+  }
 
-  }
-    //if the card has already been selected do not add it back in
-    //if the card has a specific property
-    //if even.target has a class of active (meaning it has been clicked on), return/stop function. else push to array
-  }
   removeSelected() {
     for (var i = 0; i < this.selectedCards.length; i++){
-      if (event.target.getAttribute('data-id') === this.selectedCards[i]) {
+      if (event.target.getAttribute('data-image-source') === this.selectedCards[i]) {
         this.selectedCards.splice(i, 1);
       }
     }
   }
-  checkSelectedCards() {
+  checkSelectedCards(selectedArray) {
+    if (selectedArray[0] === selectedArray[1]) {
+      console.log(this.selectedCards);
+      this.moveToMatched(selectedArray);
 
+
+    }
   }
-  moveToMatched() {
+  moveToMatched(selectedArray) {
+    this.matchedCards.push(selectedArray);
+    deck.selectedCards = [];
+    console.log(this.matchedCards);
+    console.log(this.selectedCards);
 
+    //STEP 4 once two cards match, set this.matched = true
+    // if any cards have this.matched = true, set them to hidden
   }
 }
