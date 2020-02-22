@@ -29,7 +29,6 @@ function displayCards() {
   }
 }
 
-
 function revealImage(event) {
   if (event.target.getAttribute('data-face-up') === 'true') {
     event.target.setAttribute('data-face-up', false);
@@ -43,7 +42,21 @@ function revealImage(event) {
     }
   }
 
-
 //function hidematches
 // iterate over the cards array and set the hidden class to any that
 // have this.matched = true; (if the data id is in the matched cards array);
+
+function hideMatches() {
+  var cardClicked = document.querySelectorAll(`[data-face-up*="true"]`);
+  cardClicked.forEach(card => card.style.visibility = 'hidden');
+  showMatchCount();
+}
+
+//Rachael: leaving this down here until we all review then if we keep it, we can move it to the top
+var displayMatches = document.querySelector('.number-of-matches');
+
+function showMatchCount() {
+  var matches = Number(displayMatches.innerText);
+  matches++;
+  displayMatches.innerText = `${matches}`;
+}

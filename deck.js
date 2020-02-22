@@ -4,9 +4,11 @@ class Deck {
     this.matchedCards = [];
     this.selectedCards = [];
   }
+
   shuffle() {
 
   }
+
   addSelected(card) {
     if (this.selectedCards.length < 2) {
     this.selectedCards.push(card);
@@ -23,19 +25,20 @@ class Deck {
       }
     }
   }
+
   checkSelectedCards(selectedArray) {
     if (selectedArray[0] === selectedArray[1]) {
       console.log(this.selectedCards);
       this.moveToMatched(selectedArray);
-
-
     }
   }
+
   moveToMatched(selectedArray) {
     this.matchedCards.push(selectedArray);
     deck.selectedCards = [];
     console.log(this.matchedCards);
     console.log(this.selectedCards);
+    hideMatches();
 
     //STEP 4 once two cards match, set this.matched = true
     // if any cards have this.matched = true, set them to hidden
