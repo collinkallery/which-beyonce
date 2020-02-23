@@ -5,6 +5,6 @@ class Card {
     this.sourceImage = sourceImage;
   }
   match() {
-
+    this.matched = true;
   }
 };

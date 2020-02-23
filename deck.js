@@ -9,38 +9,45 @@ class Deck {
 
   }
 
-  addSelected(card) {
+  addSelected(numberId) {
     if (this.selectedCards.length < 2) {
-    this.selectedCards.push(card);
+    this.selectedCards.push(this.cards[numberId]);
   }
     if (this.selectedCards.length === 2) {
       this.checkSelectedCards(this.selectedCards);
     }
+    console.log(this.selectedCards)
   }
 
   removeSelected() {
-    for (var i = 0; i < this.selectedCards.length; i++){
-      if (event.target.getAttribute('data-image-source') === this.selectedCards[i]) {
+    for (var i = 0; i < this.selectedCards.length; i++) {
+      if (event.target.getAttribute('data-image-source') === this.selectedCards[i].sourceImage) {
         this.selectedCards.splice(i, 1);
       }
     }
+    console.log(deck.selectedCards);
   }
 
   checkSelectedCards(selectedArray) {
-    if (selectedArray[0] === selectedArray[1]) {
-      console.log(this.selectedCards);
+    if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {
       this.moveToMatched(selectedArray);
     }
+    console.log(deck.selectedCards);
   }
 
   moveToMatched(selectedArray) {
-    this.matchedCards.push(selectedArray);
-    deck.selectedCards = [];
+    this.matchedCards.push(selectedArray[0]);
+    this.matchedCards.push(selectedArray[1]);
+    this.selectedCards = [];
+    this.matchedCards.forEach((card) => {
+      card.match();
+    });
     console.log(this.matchedCards);
     console.log(this.selectedCards);
     hideMatches();
+  }
+
 
     //STEP 4 once two cards match, set this.matched = true
     // if any cards have this.matched = true, set them to hidden
-  }
 }
