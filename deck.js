@@ -47,7 +47,4 @@ class Deck {
     hideMatches();
   }
 
-
-    //STEP 4 once two cards match, set this.matched = true
-    // if any cards have this.matched = true, set them to hidden
 }

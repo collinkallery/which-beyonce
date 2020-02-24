@@ -16,12 +16,16 @@ var gamePage = document.querySelector('.game-page');
 var cardDivs = document.querySelectorAll('.card-wrapper');
 var winnerPage = document.querySelector('.winner-page');
 var entirePage = document.querySelector('.entire-page');
+var totalTimeDisplay = document.querySelector('.total-time-display');
+var startTimer;
+var endTimer;
+var gameTime;
 
-window.onload = displayCards();
+window.onload = createGame();
 
 gamePage.addEventListener('click', revealImage);
 
-function displayCards() {
+function createGame() {
   for (var i = 0; i < deck.cards.length; i++) {
     gamePage.innerHTML += `
     <div class="card-wrapper">
@@ -32,6 +36,7 @@ function displayCards() {
     </div>
     `
   }
+  startTimer = Date.now();
 }
 
 function revealImage(event) {
@@ -48,10 +53,6 @@ function revealImage(event) {
       deck.addSelected(numberId);
     }
   }
-
-//function hidematches
-// iterate over the cards array and set the hidden class to any that
-// have this.matched = true; (if the data id is in the matched cards array);
 
 function hideMatches() {
   var cardClicked = document.querySelectorAll(`[data-face-up*="true"]`);
@@ -72,4 +73,14 @@ function showWinnerPage() {
     winnerPage.classList.remove('hidden');
     entirePage.classList.add('hidden');
   }
+  endTimer = Date.now();
+  timer();
+  totalTimeDisplay.innerText = `${gameTime} seconds`;
+}
+
+//timer build out
+
+function timer () {
+  gameTime = (endTimer - startTimer) / 1000;
+  return gameTime;
 }
