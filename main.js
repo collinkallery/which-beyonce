@@ -42,8 +42,8 @@ function createGame() {
 function revealImage(event) {
   if (event.target.getAttribute('data-face-up') === 'true') {
     event.target.setAttribute('data-face-up', false);
-    event.target.src = 'assets/B.jpeg'
-    deck.removeSelected();
+    event.target.src = 'assets/B.jpeg';
+    deck.removeSelected(event.target.getAttribute('data-image-source'));
   } else if (deck.selectedCards.length < 2 && event.target.getAttribute('data-face-up') === 'false') {
       event.target.setAttribute('data-face-up', true);
       var cardMatchID = event.target.getAttribute('data-image-source');
@@ -51,20 +51,34 @@ function revealImage(event) {
       var numberId = event.target.getAttribute('data-id');
 
       deck.addSelected(numberId);
+      if (deck.selectedCards.length === 2) {
+        deck.checkSelectedCards(deck.selectedCards);
+      }
+      hideMatches(deck.matchedCards);
+      console.log(deck.selectedCards);
     }
   }
 
-function hideMatches() {
-  var cardClicked = document.querySelectorAll(`[data-face-up*="true"]`);
-  cardClicked.forEach(card => card.style.visibility = 'hidden');
+// function hideMatches() {
+//   var cardClicked = document.querySelectorAll(`[data-face-up*="true"]`);
+//   cardClicked.forEach(card => card.style.visibility = 'hidden');
+  // showMatchCount();
+  // showWinnerPage();
+// }
+
+function hideMatches(matches) {
+  matches.forEach((match) => {
+    var cardId = match.matchInfo;
+    document.querySelector(`#card-${cardId}`).style.visibility = 'hidden';
+    console.log(match.matchInfo);
+  });
   showMatchCount();
   showWinnerPage();
 }
 
 function showMatchCount() {
   var displayMatches = document.querySelector('.number-of-matches');
-  var matches = Number(displayMatches.innerText);
-  matches++;
+  var matches = deck.matchedCards.length / 2;
   displayMatches.innerText = `${matches}`;
 }
 
