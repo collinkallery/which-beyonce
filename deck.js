@@ -13,24 +13,21 @@ class Deck {
     if (this.selectedCards.length < 2) {
     this.selectedCards.push(this.cards[numberId]);
   }
-    if (this.selectedCards.length === 2) {
-      this.checkSelectedCards(this.selectedCards);
-    }
-    console.log(this.selectedCards)
+    console.log(this.selectedCards);
   }
 
-  removeSelected() {
+  removeSelected(event) {
     for (var i = 0; i < this.selectedCards.length; i++) {
-      if (event.target.getAttribute('data-image-source') === this.selectedCards[i].sourceImage) {
+      if (event === this.selectedCards[i].sourceImage) {
         this.selectedCards.splice(i, 1);
       }
     }
     console.log(deck.selectedCards);
   }
 
-  checkSelectedCards(selectedArray) {
+  checkSelectedCards() {
     if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {
-      this.moveToMatched(selectedArray);
+      this.moveToMatched(this.selectedCards);
     }
     console.log(deck.selectedCards);
   }
@@ -44,7 +41,7 @@ class Deck {
     });
     console.log(this.matchedCards);
     console.log(this.selectedCards);
-    hideMatches();
+    // hideMatches();
   }
 
 }
