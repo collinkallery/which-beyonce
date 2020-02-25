@@ -69,6 +69,7 @@ function hideMatches(matches) {
     document.querySelector(`.id${cardId}`).style.visibility = 'hidden';
   });
   showMatchCount();
+  showMatchThumbnails();
   showWinnerPage();
 }
 
@@ -79,8 +80,27 @@ function showMatchCount() {
 }
 
 function showMatchThumbnails() {
-  //loop through matched cards array
-  //
+  if (deck.matchedCards.length < 2) {
+    return;
+  }
+  var matchDisplay = document.querySelectorAll('.matchThumbnail');
+  switch(deck.matchedCards[deck.matchedCards.length - 1].sourceImage) {
+    case "assets/bey1.jpg":
+      matchDisplay[0].src = "assets/bey1.jpg";
+      break;
+    case "assets/bey2.jpg":
+      matchDisplay[1].src = "assets/bey2.jpg";
+      break;
+    case "assets/bey3.jpg":
+      matchDisplay[2].src = "assets/bey3.jpeg";
+      break;
+    case "assets/bey4.jpg":
+      matchDisplay[3].src = "assets/bey4.jpg";
+      break;
+    case "assets/bey5.jpg":
+      matchDisplay[4].src = "assets/bey5.jpg";
+      break;
+  }
 }
 
 function showWinnerPage() {
