@@ -6,15 +6,30 @@ class Deck {
   }
 
   shuffle() {
+    var m = this.cards.length;
+    var t;
+    var i;
 
-  }
+// While there remain elements to shuffle…
+    while (m) {
+
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+
+      // And swap it with the current element.
+      t = this.cards[m];
+      this.cards[m] = this.cards[i];
+      this.cards[i] = t;
+}
+
+return this.cards;
+}
 
   addSelected(numberId) {
     if (this.selectedCards.length < 2) {
     this.selectedCards.push(this.cards[numberId]);
   }
-    console.log(this.selectedCards);
-  }
+}
 
   removeSelected(event) {
     for (var i = 0; i < this.selectedCards.length; i++) {
@@ -22,14 +37,14 @@ class Deck {
         this.selectedCards.splice(i, 1);
       }
     }
-    console.log(deck.selectedCards);
   }
 
   checkSelectedCards() {
     if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {
       this.moveToMatched(this.selectedCards);
+      console.log('true');
     }
-    console.log(deck.selectedCards);
+    console.log('false');
   }
 
   moveToMatched(selectedArray) {
@@ -39,9 +54,6 @@ class Deck {
     this.matchedCards.forEach((card) => {
       card.match();
     });
-    console.log(this.matchedCards);
-    console.log(this.selectedCards);
-    // hideMatches();
   }
 
 }

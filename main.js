@@ -17,6 +17,7 @@ var cardDivs = document.querySelectorAll('.card-wrapper');
 var winnerPage = document.querySelector('.winner-page');
 var entirePage = document.querySelector('.entire-page');
 var totalTimeDisplay = document.querySelector('.total-time-display');
+var playAgainButton = document.querySelector('.play-again-button');
 var startTimer;
 var endTimer;
 var gameTime;
@@ -24,12 +25,14 @@ var gameTime;
 window.onload = createGame();
 
 gamePage.addEventListener('click', revealImage);
+playAgainButton.addEventListener('click', playAgain);
 
 function createGame() {
+  deck.shuffle();
   for (var i = 0; i < deck.cards.length; i++) {
     gamePage.innerHTML += `
     <div class="card-wrapper">
-      <img class="unknown-card" src="assets/B.jpeg" id="card-${i}"
+      <img class="unknown-card id${deck.cards[i].matchInfo}" src="assets/B.jpeg" id="card-${i}"
       data-id="${deck.cards[i].matchInfo}" data-face-up="false"
       data-image-source="${deck.cards[i].sourceImage}"
       data-matched="${deck.cards[i].matched}">
@@ -48,9 +51,10 @@ function revealImage(event) {
       event.target.setAttribute('data-face-up', true);
       var cardMatchID = event.target.getAttribute('data-image-source');
       event.target.src = cardMatchID;
-      var numberId = event.target.getAttribute('data-id');
+      var numberId = Number(event.target.id.slice(5));
 
       deck.addSelected(numberId);
+      console.log(numberId);
       if (deck.selectedCards.length === 2) {
         deck.checkSelectedCards(deck.selectedCards);
       }
@@ -59,18 +63,10 @@ function revealImage(event) {
     }
   }
 
-// function hideMatches() {
-//   var cardClicked = document.querySelectorAll(`[data-face-up*="true"]`);
-//   cardClicked.forEach(card => card.style.visibility = 'hidden');
-  // showMatchCount();
-  // showWinnerPage();
-// }
-
 function hideMatches(matches) {
   matches.forEach((match) => {
     var cardId = match.matchInfo;
-    document.querySelector(`#card-${cardId}`).style.visibility = 'hidden';
-    console.log(match.matchInfo);
+    document.querySelector(`.id${cardId}`).style.visibility = 'hidden';
   });
   showMatchCount();
   showWinnerPage();
@@ -80,6 +76,11 @@ function showMatchCount() {
   var displayMatches = document.querySelector('.number-of-matches');
   var matches = deck.matchedCards.length / 2;
   displayMatches.innerText = `${matches}`;
+}
+
+function showMatchThumbnails() {
+  //loop through matched cards array
+  //
 }
 
 function showWinnerPage() {
@@ -97,4 +98,8 @@ function showWinnerPage() {
 function timer () {
   gameTime = (endTimer - startTimer) / 1000;
   return gameTime;
+}
+
+function playAgain() {
+  window.location.reload();
 }
