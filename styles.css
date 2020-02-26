@@ -1,21 +1,17 @@
 * {
-  text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
+  text-transform: uppercase;
 }
 
 body {
   margin: 0;
 }
 
-h1 {
-  /* border: 1px solid red; */
-}
-
 header {
-  height: 12vh;
-  display: flex;
   align-items: center;
+  display: flex;
+  height: 12vh;
   justify-content: center;
 }
 
@@ -25,12 +21,12 @@ header {
 }
 
 aside {
-  min-width: 290px;
-  height: 90vh;
+  align-items: center;
   background-color: black;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 90vh;
+  min-width: 290px;
 }
 
 aside h2,
@@ -39,24 +35,24 @@ p {
 }
 
 h2 {
-  width: 7em;
   font-size: 1.25em;
-  text-align: center;
   margin-top: 3em;
+  text-align: center;
+  width: 7em;
 }
 
 .matchThumbnail {
   background-color: grey;
-  width: 4em;
   height: 5.5em;
   margin: 1em;
+  width: 4em;
 }
 
 .confirmed-match-top,
 .confirmed-match-bottom {
+  align-content: space-between;
   display: flex;
   flex-direction: row;
-  align-content: space-between;
   justify-content: center;
 }
 
@@ -67,10 +63,10 @@ h2 {
 }
 
 .top-3-times {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding-top: 5em;
 }
 
@@ -80,8 +76,8 @@ h2 {
 
 main {
   background-color: #E9E9E9;
-  width: 88%;
   height: 90vh;
+  width: 88%;
 }
 
 .hidden {
@@ -90,25 +86,27 @@ main {
 
 .game-page {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   min-width: 1100px;
-  flex-direction: row;
 }
+
 .card-wrapper {
   flex: 1 0 21%;
 }
+
 .unknown-card {
-  font-size: 4em;
-  background-image: white;
-  width: 2em;
-  height: 3em;
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
-  margin: .5em;
-  font-weight: bold;
+  background-image: white;
   border: .08em solid black;
+  display: inline-flex;
+  font-size: 4em;
+  font-weight: bold;
+  height: 3em;
+  justify-content: center;
+  margin: .5em;
+  width: 2em;
 }
 
 .unknown-card-top,
@@ -159,20 +157,20 @@ main {
 }
 
 .winner-page {
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
 }
 
 .congrats-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
   background-image: url(assets/bey1.jpg);
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
   opacity: 0.7;
+  width: 100vw;
 }
 
 h3 {
@@ -182,12 +180,12 @@ h3 {
 
 .play-again-button,
 .new-game-button {
-  font-size: 2em;
   background-color: black;
   color: white;
-  padding: .5em 1.75em;
+  font-size: 2em;
   margin: 1.5em 2.5em;
   outline: none;
+  padding: .5em 1.75em;
 }
 
 .match-time-info,
