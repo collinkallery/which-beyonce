@@ -18,6 +18,8 @@ var winnerPage = document.querySelector('.winner-page');
 var entirePage = document.querySelector('.entire-page');
 var totalTimeDisplay = document.querySelector('.total-time-display');
 var playAgainButton = document.querySelector('.play-again-button');
+var bestTimesDisplay = document.querySelectorAll('.top-time');
+//
 var startTimer;
 var endTimer;
 var gameTime;
@@ -32,6 +34,7 @@ playAgainButton.addEventListener('click', playAgain);
 
 function createGame() {
   deck.shuffle();
+  displayBestTimes();
   for (var i = 0; i < deck.cards.length; i++) {
     gamePage.innerHTML += `
     <div class="card-wrapper">
@@ -122,11 +125,9 @@ function timer() {
   return gameTime;
 }
 
+// storing best times in localStorage
+
 function storeBestTimes() {
-  // pull storage if it exists
-  // add to it and re-sort it
-  // stringify
-  // send it back to storage
   if (!myStorage.getItem("bestTimes")) {
     myStorage.setItem('bestTimes', JSON.stringify([]));
   }
@@ -145,6 +146,23 @@ function sortBestTimes(timeArray) {
     timeArray.pop();
   }
   return timeArray;
+}
+
+// displaying top 3 times
+
+function displayBestTimes() {
+  //get time from local storage
+  //set each bestTimesDisplay node to corresponding best time array element
+  if (myStorage.length < 1) {
+    return;
+  }
+  var retrievedTimes = JSON.parse(myStorage.getItem("bestTimes"));
+  bestTimesDisplay.forEach((time, i) => {
+    if (!retrievedTimes[i]) {
+      return;
+    }
+    time.innerText = `${retrievedTimes[i]} SECONDS`;
+  });
 }
 
 function playAgain() {
