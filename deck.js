@@ -20,9 +20,8 @@ class Deck {
       t = this.cards[m];
       this.cards[m] = this.cards[i];
       this.cards[i] = t;
-}
-
-return this.cards;
+    }
+  return this.cards;
 }
 
   addSelected(numberId) {
@@ -31,20 +30,17 @@ return this.cards;
   }
 }
 
-  removeSelected(event) {
-    for (var i = 0; i < this.selectedCards.length; i++) {
-      if (event === this.selectedCards[i].sourceImage) {
-        this.selectedCards.splice(i, 1);
-      }
-    }
-  }
-
   checkSelectedCards() {
     if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {
       this.moveToMatched(this.selectedCards);
-      console.log('true');
+      this.selectedCards = [];
+    } else {
+      return false;
     }
-    console.log('false');
+  }
+
+  clearSelectedCards() {
+    this.selectedCards = [];
   }
 
   moveToMatched(selectedArray) {
@@ -55,5 +51,4 @@ return this.cards;
       card.match();
     });
   }
-
 }
