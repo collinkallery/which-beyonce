@@ -26,6 +26,7 @@ playAgainButton.addEventListener('click', playAgain);
 
 function createGame() {
   deck.shuffle();
+  displayBestTimes();
   for (var i = 0; i < deck.cards.length; i++) {
     gamePage.innerHTML += `
     <div class="card-wrapper">
@@ -61,6 +62,22 @@ function flipSingleCard(event) {
     event.target.src = cardMatchID;
     deck.addSelected(numberId);
   }
+  if (deck.selectedCards.length === 2) {
+    deck.checkSelectedCards(deck.selectedCards);
+      autoFlip();
+    hideMatches(deck.matchedCards);
+  }
+}
+
+function flipSingleCard(event) {
+  if (event.target.getAttribute('data-face-up') === 'false') {
+    event.target.setAttribute('data-face-up', true);
+    var cardMatchID = event.target.getAttribute('data-image-source');
+    var numberId = Number(event.target.id.slice(5));
+    event.target.src = cardMatchID;
+    deck.addSelected(numberId);
+  }
+}
 
 function hideMatches(matches) {
   matches.forEach((match) => {
@@ -90,7 +107,7 @@ function showMatchThumbnails() {
     case "assets/bey2.jpg":
       matchDisplay[1].src = "assets/bey2.jpg";
       break;
-    case "assets/bey3.jpg":
+    case "assets/bey3.jpeg":
       matchDisplay[2].src = "assets/bey3.jpeg";
       break;
     case "assets/bey4.jpg":
@@ -110,10 +127,11 @@ function showWinnerPage() {
   if (deck.matchedCards.length === 10) {
     winnerPage.classList.remove('hidden');
     entirePage.classList.add('hidden');
+    endTimer = Date.now();
+    timer();
+    storeBestTimes();
+    totalTimeDisplay.innerText = `${gameTime} seconds`;
   }
-  endTimer = Date.now();
-  timer();
-  totalTimeDisplay.innerText = `${gameTime} seconds`;
 }
 
 //timer build out

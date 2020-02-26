@@ -70,7 +70,8 @@ h2 {
   padding-top: 5em;
 }
 
-.top-time {
+.top-time,
+.top-time-header {
   margin: .5em
 }
 
