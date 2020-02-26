@@ -10,7 +10,7 @@ class Deck {
     var t;
     var i;
 
-// While there remain elements to shuffle…
+    // While there remain elements to shuffle…
     while (m) {
 
       // Pick a remaining element…
@@ -21,14 +21,14 @@ class Deck {
       this.cards[m] = this.cards[i];
       this.cards[i] = t;
     }
-  return this.cards;
-}
+    return this.cards;
+  }
 
   addSelected(numberId) {
     if (this.selectedCards.length < 2) {
-    this.selectedCards.push(this.cards[numberId]);
+      this.selectedCards.push(this.cards[numberId]);
+    }
   }
-}
 
   checkSelectedCards() {
     if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {

@@ -11,25 +11,16 @@ var card8 = new Card(8, 'assets/bey5.jpg');
 var card9 = new Card(9, 'assets/bey5.jpg');
 var cards = [card0, card1, card2, card3, card4, card5, card6, card7, card8, card9];
 var deck = new Deck(cards);
-// DOM elements
+// global variables
 var gamePage = document.querySelector('.game-page');
-var cardDivs = document.querySelectorAll('.card-wrapper');
-var winnerPage = document.querySelector('.winner-page');
-var entirePage = document.querySelector('.entire-page');
-var totalTimeDisplay = document.querySelector('.total-time-display');
 var playAgainButton = document.querySelector('.play-again-button');
-var bestTimesDisplay = document.querySelectorAll('.top-time');
-//
-var startTimer;
 var endTimer;
 var gameTime;
-var recordedTimes = [];
-var myStorage = window.localStorage;
 var lockboard = false;
-
+var myStorage = window.localStorage;
+var startTimer;
 
 window.onload = createGame();
-
 gamePage.addEventListener('click', revealImage);
 playAgainButton.addEventListener('click', playAgain);
 
@@ -55,6 +46,21 @@ function revealImage(event) {
   }
   if (deck.selectedCards.length < 2) {
     flipSingleCard(event);
+  }
+  if (deck.selectedCards.length === 2) {
+    deck.checkSelectedCards(deck.selectedCards);
+    autoFlip();
+    hideMatches(deck.matchedCards);
+  }
+}
+
+function flipSingleCard(event) {
+  if (event.target.getAttribute('data-face-up') === 'false') {
+    event.target.setAttribute('data-face-up', true);
+    var cardMatchID = event.target.getAttribute('data-image-source');
+    var numberId = Number(event.target.id.slice(5));
+    event.target.src = cardMatchID;
+    deck.addSelected(numberId);
   }
   if (deck.selectedCards.length === 2) {
     deck.checkSelectedCards(deck.selectedCards);
@@ -94,7 +100,7 @@ function showMatchThumbnails() {
     return;
   }
   var matchDisplay = document.querySelectorAll('.matchThumbnail');
-  switch(deck.matchedCards[deck.matchedCards.length - 1].sourceImage) {
+  switch (deck.matchedCards[deck.matchedCards.length - 1].sourceImage) {
     case "assets/bey1.jpg":
       matchDisplay[0].src = "assets/bey1.jpg";
       break;
@@ -114,6 +120,10 @@ function showMatchThumbnails() {
 }
 
 function showWinnerPage() {
+  var entirePage = document.querySelector('.entire-page');
+  var totalTimeDisplay = document.querySelector('.total-time-display');
+  var winnerPage = document.querySelector('.winner-page');
+
   if (deck.matchedCards.length === 10) {
     winnerPage.classList.remove('hidden');
     entirePage.classList.add('hidden');
@@ -125,18 +135,13 @@ function showWinnerPage() {
 }
 
 //timer build out
-
 function timer() {
   gameTime = (endTimer - startTimer) / 1000;
   return gameTime;
 }
 
 // storing best times in localStorage
-
 function storeBestTimes() {
-  if (!myStorage.getItem("bestTimes")) {
-    myStorage.setItem('bestTimes', JSON.stringify([]));
-  }
   var retrievedTimes = JSON.parse(myStorage.getItem("bestTimes"));
   retrievedTimes.push(gameTime);
   sortBestTimes(retrievedTimes);
@@ -146,7 +151,7 @@ function storeBestTimes() {
 
 function sortBestTimes(timeArray) {
   timeArray.sort(function(a, b) {
-    return a-b;
+    return a - b;
   });
   if (timeArray.length > 3) {
     timeArray.pop();
@@ -155,14 +160,13 @@ function sortBestTimes(timeArray) {
 }
 
 // displaying top 3 times
-
 function displayBestTimes() {
-  //get time from local storage
-  //set each bestTimesDisplay node to corresponding best time array element
-  if (myStorage.length < 1) {
-    return;
-  }
+  var bestTimesDisplay = document.querySelectorAll('.top-time');
   var retrievedTimes = JSON.parse(myStorage.getItem("bestTimes"));
+
+  if (!myStorage.getItem("bestTimes")) {
+    myStorage.setItem('bestTimes', JSON.stringify([]));
+  }
   bestTimesDisplay.forEach((time, i) => {
     if (!retrievedTimes[i]) {
       return;
@@ -173,8 +177,8 @@ function displayBestTimes() {
 
 function autoFlip() {
   lockboard = true;
-    setTimeout(function() {
-      var domCards = document.querySelectorAll('.unknown-card');
+  setTimeout(function() {
+    var domCards = document.querySelectorAll('.unknown-card');
     domCards.forEach((item) => {
       item.src = 'assets/B.jpeg';
       item.setAttribute('data-face-up', false);
