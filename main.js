@@ -21,6 +21,9 @@ var playAgainButton = document.querySelector('.play-again-button');
 var startTimer;
 var endTimer;
 var gameTime;
+var recordedTimes = [];
+var myStorage = window.localStorage;
+
 
 window.onload = createGame();
 
@@ -54,12 +57,10 @@ function revealImage(event) {
       var numberId = Number(event.target.id.slice(5));
 
       deck.addSelected(numberId);
-      console.log(numberId);
       if (deck.selectedCards.length === 2) {
         deck.checkSelectedCards(deck.selectedCards);
       }
       hideMatches(deck.matchedCards);
-      console.log(deck.selectedCards);
     }
   }
 
@@ -91,7 +92,7 @@ function showMatchThumbnails() {
     case "assets/bey2.jpg":
       matchDisplay[1].src = "assets/bey2.jpg";
       break;
-    case "assets/bey3.jpg":
+    case "assets/bey3.jpeg":
       matchDisplay[2].src = "assets/bey3.jpeg";
       break;
     case "assets/bey4.jpg":
@@ -107,17 +108,43 @@ function showWinnerPage() {
   if (deck.matchedCards.length === 10) {
     winnerPage.classList.remove('hidden');
     entirePage.classList.add('hidden');
+    endTimer = Date.now();
+    timer();
+    storeBestTimes();
+    totalTimeDisplay.innerText = `${gameTime} seconds`;
   }
-  endTimer = Date.now();
-  timer();
-  totalTimeDisplay.innerText = `${gameTime} seconds`;
 }
 
 //timer build out
 
-function timer () {
+function timer() {
   gameTime = (endTimer - startTimer) / 1000;
   return gameTime;
+}
+
+function storeBestTimes() {
+  // pull storage if it exists
+  // add to it and re-sort it
+  // stringify
+  // send it back to storage
+  if (!myStorage.getItem("bestTimes")) {
+    myStorage.setItem('bestTimes', JSON.stringify([]));
+  }
+  var retrievedTimes = JSON.parse(myStorage.getItem("bestTimes"));
+  retrievedTimes.push(gameTime);
+  sortBestTimes(retrievedTimes);
+  myStorage.setItem("bestTimes", JSON.stringify(retrievedTimes));
+  return retrievedTimes;
+}
+
+function sortBestTimes(timeArray) {
+  timeArray.sort(function(a, b) {
+    return a-b;
+  });
+  if (timeArray.length > 3) {
+    timeArray.pop();
+  }
+  return timeArray;
 }
 
 function playAgain() {

@@ -42,9 +42,7 @@ return this.cards;
   checkSelectedCards() {
     if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {
       this.moveToMatched(this.selectedCards);
-      console.log('true');
     }
-    console.log('false');
   }
 
   moveToMatched(selectedArray) {
@@ -55,5 +53,4 @@ return this.cards;
       card.match();
     });
   }
-
 }
