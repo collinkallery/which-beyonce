@@ -25,6 +25,7 @@ var endTimer;
 var gameTime;
 var recordedTimes = [];
 var myStorage = window.localStorage;
+var lockboard = false;
 
 
 window.onload = createGame();
@@ -49,23 +50,28 @@ function createGame() {
 }
 
 function revealImage(event) {
-  if (event.target.getAttribute('data-face-up') === 'true') {
-    event.target.setAttribute('data-face-up', false);
-    event.target.src = 'assets/B.jpeg';
-    deck.removeSelected(event.target.getAttribute('data-image-source'));
-  } else if (deck.selectedCards.length < 2 && event.target.getAttribute('data-face-up') === 'false') {
-      event.target.setAttribute('data-face-up', true);
-      var cardMatchID = event.target.getAttribute('data-image-source');
-      event.target.src = cardMatchID;
-      var numberId = Number(event.target.id.slice(5));
-
-      deck.addSelected(numberId);
-      if (deck.selectedCards.length === 2) {
-        deck.checkSelectedCards(deck.selectedCards);
-      }
-      hideMatches(deck.matchedCards);
-    }
+  if (lockboard) {
+    return;
   }
+  if (deck.selectedCards.length < 2) {
+    flipSingleCard(event);
+  }
+  if (deck.selectedCards.length === 2) {
+    deck.checkSelectedCards(deck.selectedCards);
+      autoFlip();
+    hideMatches(deck.matchedCards);
+  }
+}
+
+function flipSingleCard(event) {
+  if (event.target.getAttribute('data-face-up') === 'false') {
+    event.target.setAttribute('data-face-up', true);
+    var cardMatchID = event.target.getAttribute('data-image-source');
+    var numberId = Number(event.target.id.slice(5));
+    event.target.src = cardMatchID;
+    deck.addSelected(numberId);
+  }
+}
 
 function hideMatches(matches) {
   matches.forEach((match) => {
@@ -163,6 +169,19 @@ function displayBestTimes() {
     }
     time.innerText = `${retrievedTimes[i]} SECONDS`;
   });
+}
+
+function autoFlip() {
+  lockboard = true;
+    setTimeout(function() {
+      var domCards = document.querySelectorAll('.unknown-card');
+    domCards.forEach((item) => {
+      item.src = 'assets/B.jpeg';
+      item.setAttribute('data-face-up', false);
+    });
+    deck.clearSelectedCards();
+    lockboard = false;
+  }, 1000);
 }
 
 function playAgain() {
