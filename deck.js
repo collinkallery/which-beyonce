@@ -3,7 +3,7 @@ class Deck {
     this.cards = cards;
     this.matchedCards = [];
     this.selectedCards = [];
-  }
+  };
 
   shuffle() {
     var m = this.cards.length;
@@ -22,13 +22,13 @@ class Deck {
       this.cards[i] = t;
     }
     return this.cards;
-  }
+  };
 
   addSelected(numberId) {
     if (this.selectedCards.length < 2) {
       this.selectedCards.push(this.cards[numberId]);
     }
-  }
+  };
 
   checkSelectedCards() {
     if (this.selectedCards[0].sourceImage === this.selectedCards[1].sourceImage) {
@@ -37,11 +37,11 @@ class Deck {
     } else {
       return false;
     }
-  }
+  };
 
   clearSelectedCards() {
     this.selectedCards = [];
-  }
+  };
 
   moveToMatched(selectedArray) {
     this.matchedCards.push(selectedArray[0]);
@@ -51,4 +51,4 @@ class Deck {
       card.match();
     });
   }
-}
+};

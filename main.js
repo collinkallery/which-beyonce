@@ -38,7 +38,7 @@ function createGame() {
     `
   }
   startTimer = Date.now();
-}
+};
 
 function revealImage(event) {
   if (lockboard) {
@@ -52,7 +52,7 @@ function revealImage(event) {
     autoFlip();
     hideMatches(deck.matchedCards);
   }
-}
+};
 
 function flipSingleCard(event) {
   if (event.target.getAttribute('data-face-up') === 'false') {
@@ -67,17 +67,7 @@ function flipSingleCard(event) {
       autoFlip();
     hideMatches(deck.matchedCards);
   }
-}
-
-// function flipSingleCard(event) {
-//   if (event.target.getAttribute('data-face-up') === 'false') {
-//     event.target.setAttribute('data-face-up', true);
-//     var cardMatchID = event.target.getAttribute('data-image-source');
-//     var numberId = Number(event.target.id.slice(5));
-//     event.target.src = cardMatchID;
-//     deck.addSelected(numberId);
-//   }
-// }
+};
 
 function hideMatches(matches) {
   matches.forEach((match) => {
@@ -87,13 +77,13 @@ function hideMatches(matches) {
   showMatchCount();
   showMatchThumbnails();
   showWinnerPage();
-}
+};
 
 function showMatchCount() {
   var displayMatches = document.querySelector('.number-of-matches');
   var matches = deck.matchedCards.length / 2;
   displayMatches.innerText = `${matches}`;
-}
+};
 
 function showMatchThumbnails() {
   if (deck.matchedCards.length < 2) {
@@ -117,7 +107,7 @@ function showMatchThumbnails() {
       matchDisplay[4].src = "assets/bey5.jpg";
       break;
   }
-}
+};
 
 function showWinnerPage() {
   var entirePage = document.querySelector('.entire-page');
@@ -132,13 +122,13 @@ function showWinnerPage() {
     storeBestTimes();
     totalTimeDisplay.innerText = `${gameTime} seconds`;
   }
-}
+};
 
 //timer build out
 function timer() {
   gameTime = (endTimer - startTimer) / 1000;
   return gameTime;
-}
+};
 
 // storing best times in localStorage
 function storeBestTimes() {
@@ -147,7 +137,7 @@ function storeBestTimes() {
   sortBestTimes(retrievedTimes);
   myStorage.setItem("bestTimes", JSON.stringify(retrievedTimes));
   return retrievedTimes;
-}
+};
 
 function sortBestTimes(timeArray) {
   timeArray.sort(function(a, b) {
@@ -157,7 +147,7 @@ function sortBestTimes(timeArray) {
     timeArray.pop();
   }
   return timeArray;
-}
+};
 
 // displaying top 3 times
 function displayBestTimes() {
@@ -173,7 +163,7 @@ function displayBestTimes() {
     }
     time.innerText = `${retrievedTimes[i]} SECONDS`;
   });
-}
+};
 
 function autoFlip() {
   lockboard = true;
@@ -186,8 +176,8 @@ function autoFlip() {
     deck.clearSelectedCards();
     lockboard = false;
   }, 1000);
-}
+};
 
 function playAgain() {
   window.location.reload();
-}
+};
