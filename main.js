@@ -69,15 +69,15 @@ function flipSingleCard(event) {
   }
 }
 
-function flipSingleCard(event) {
-  if (event.target.getAttribute('data-face-up') === 'false') {
-    event.target.setAttribute('data-face-up', true);
-    var cardMatchID = event.target.getAttribute('data-image-source');
-    var numberId = Number(event.target.id.slice(5));
-    event.target.src = cardMatchID;
-    deck.addSelected(numberId);
-  }
-}
+// function flipSingleCard(event) {
+//   if (event.target.getAttribute('data-face-up') === 'false') {
+//     event.target.setAttribute('data-face-up', true);
+//     var cardMatchID = event.target.getAttribute('data-image-source');
+//     var numberId = Number(event.target.id.slice(5));
+//     event.target.src = cardMatchID;
+//     deck.addSelected(numberId);
+//   }
+// }
 
 function hideMatches(matches) {
   matches.forEach((match) => {
